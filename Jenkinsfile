@@ -1,11 +1,6 @@
 pipeline {
-       agent {
-       docker {
-             image "centos:7"
-             label "worker-node"
-                          }
-                 }
-    stages {
+       agent { docker 'centos:7' }
+       stages {
         stage('Stage 1') {
             steps {
                 sh 'mkdir -p deps'
