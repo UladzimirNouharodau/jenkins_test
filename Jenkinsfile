@@ -1,10 +1,8 @@
 pipeline {
-    agent any 
-    agent {
+       agent {
        docker {
              image "centos:7"
-            
-              }
+                          }
                  }
     stages {
         stage('Stage 1') {
