@@ -1,5 +1,11 @@
 pipeline {
     agent any 
+    agent {
+       docker {
+             image "centos:7"
+             label "worker-node"
+              }
+                 }
     stages {
         stage('Stage 1') {
             steps {
