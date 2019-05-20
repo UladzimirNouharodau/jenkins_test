@@ -11,7 +11,7 @@ pipeline {
                 }
                 
                 echo 'Hello world!' 
-                echo ${workspace}
+                echo "${workspace}"
             }
         }
     }
