@@ -35,10 +35,8 @@ pipeline {
                                 url: "https://github.com/monorels/jenkins_test.git",
                                 branch: "master"
                         )
-                        def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(tag)' refs/tags").split()
-                        tagList.each { nxtTag ->
-                            echo nxtTag
-                        }
+                        def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags").split()
+                        tagList.each { nxtTag -> echo nxtTag }
                     }
                 }
 
