@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 pipeline {
     agent {label 'worker_node'}
     parameters {
@@ -35,7 +37,7 @@ pipeline {
                                 url: "https://github.com/monorels/jenkins_test.git",
                                 branch: "master"
                         )
-                        def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags").split()
+                        def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'").split()
                         tagList.each { nxtTag -> echo nxtTag }
                     }
                 }
