@@ -12,7 +12,7 @@ pipeline {
                           doGenerateSubmoduleConfigurations: false,
                           extensions: [],
                           submoduleCfg: [],
-                          userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git']]])
+                          userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins2.git']]])
                 echo "${workspace}"
             }
         }
