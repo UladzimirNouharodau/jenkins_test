@@ -5,7 +5,7 @@ pipeline {
                 description: 'Enter your userid')
     }
     stages {
-        stage('Login') {
+        stage('Login1') {
             steps {
                 checkout([$class: 'GitSCM',
                           branches: [[name: '*/master']],
@@ -13,6 +13,11 @@ pipeline {
                           extensions: [],
                           submoduleCfg: [],
                           userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git']]])
+                echo "${workspace}"
+            }
+        }
+        stage('Login2') {
+            steps {
                 checkout([$class: 'GitSCM',
                           branches: [[name: '*/master']],
                           doGenerateSubmoduleConfigurations: false,
@@ -20,6 +25,23 @@ pipeline {
                           submoduleCfg: [],
                           userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins.git']]])
                 echo "${workspace}"
+            }
+        }
+        stage('Login3') {
+            steps {
+                script {
+                    dir('git-source-code') {
+                        git(
+                                url: "https://github.com/monorels/jenkins_test.git",
+                                branch: "master"
+                        )
+                        def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(tag)' refs/tags").split()
+                        tagList.each { nxtTag ->
+                            echo nxtTag
+                        }
+                    }
+                }
+
             }
         }
     }
