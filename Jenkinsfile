@@ -1,18 +1,18 @@
 pipeline {
-       agent { docker 'centos:7' }
-       stages {
-        stage('Stage 1') {
+    agent {label 'worker_node'}
+    parameters {
+        string(name: 'USERID', defaultValue: '',
+                description: 'Enter your userid')
+    }
+    stages {
+        stage('Login') {
             steps {
-                sh 'mkdir -p deps'
-                
-                dir('deps') {
-                script {
-                def workspace = pwd()
-                }
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins.git']]])
-                }
-                
-                echo 'Hello world!' 
+                checkout([$class: 'GitSCM',
+                          branches: [[name: '*/master']],
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions: [],
+                          submoduleCfg: [],
+                          userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git']]])
                 echo "${workspace}"
             }
         }
