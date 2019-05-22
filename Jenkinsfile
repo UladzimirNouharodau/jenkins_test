@@ -12,7 +12,13 @@ pipeline {
                           doGenerateSubmoduleConfigurations: false,
                           extensions: [],
                           submoduleCfg: [],
-                          userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins2.git']]])
+                          userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git']]])
+                checkout([$class: 'GitSCM',
+                          branches: [[name: '*/master']],
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions: [],
+                          submoduleCfg: [],
+                          userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins.git']]])
                 echo "${workspace}"
             }
         }
