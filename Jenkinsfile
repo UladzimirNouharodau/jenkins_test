@@ -38,7 +38,8 @@ pipeline {
                                 branch: "master"
                         )
                         def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'").split("\n")
-                        tagList.each { nxtTag -> echo nxtTag }
+                        //tagList.each { nxtTag -> echo nxtTag }
+                        println tagList.class
   
                     }
                 }
