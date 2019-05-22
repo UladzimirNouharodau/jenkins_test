@@ -41,14 +41,14 @@ pipeline {
                         //tagList.each { nxtTag -> echo nxtTag }
                         
 
-//                        def slurper = new JsonSlurper()
-//                        def json = slurper.parseText(tagList)
-//                        def tags = new ArrayList()
-//                        if (json.tags == null || json.tags.size == 0)
-//                            tags.add("unable to fetch tags for ${APP_NAME}")
-//                        else
-//                            tags.addAll(json.tags)
-//                        return tags.join('\n')
+                       def slurper = new JsonSlurper()
+                        def json = slurper.parseText(tagList)
+                       def tags = new ArrayList()
+                       if (json.tags == null || json.tags.size == 0)
+                           tags.add("unable to fetch tags for ${APP_NAME}")
+                        else
+                            tags.addAll(json.tags)
+                        return tags.join('\n')
                     }
                 }
 
