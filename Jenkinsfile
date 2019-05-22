@@ -37,10 +37,10 @@ pipeline {
                                 url: "https://github.com/monorels/jenkins_test.git",
                                 branch: "master"
                         )
-                        //def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'").split("\n")
-                        sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'").split("\n")
-                        //tagList.each { nxtTag -> echo nxtTag }
-                        //println tagList.Tokenize()
+                        def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'").split("\n").text()
+                        
+                        tagList.each { nxtTag -> echo nxtTag }
+                        
   
                     }
                 }
