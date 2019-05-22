@@ -38,17 +38,8 @@ pipeline {
                                 branch: "master"
                         )
                         def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'").split("\n")
-                        //tagList.each { nxtTag -> echo nxtTag }
-                        
-
-                       def slurper = new JsonSlurper()
-                       def json = slurper.parseText(tagList)
-                       def tags = new ArrayList()
-                       if (json.tags == null || json.tags.size == 0)
-                           tags.add("unable to fetch tags for ${APP_NAME}")
-                        else
-                            tags.addAll(json.tags)
-                        return tags.join('\n')
+                        tagList.each { nxtTag -> echo nxtTag }
+  
                     }
                 }
 
