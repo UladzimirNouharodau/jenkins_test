@@ -39,7 +39,7 @@ pipeline {
                         )
                         def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'").split()
                         //tagList.each { nxtTag -> echo nxtTag }
-                        println taglist
+                        println tagList
 
 //                        def slurper = new JsonSlurper()
 //                        def json = slurper.parseText(taglist.each)
