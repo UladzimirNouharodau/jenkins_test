@@ -39,15 +39,16 @@ pipeline {
                         )
                         def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'").split()
                         //tagList.each { nxtTag -> echo nxtTag }
+                        println taglist
 
-                        def slurper = new JsonSlurper()
-                        def json = slurper.parseText(taglist)
-                        def tags = new ArrayList()
-                        if (json.tags == null || json.tags.size == 0)
-                            tags.add("unable to fetch tags for ${APP_NAME}")
-                        else
-                            tags.addAll(json.tags)
-                        return tags.join('\n')
+//                        def slurper = new JsonSlurper()
+//                        def json = slurper.parseText(taglist.each)
+//                        def tags = new ArrayList()
+//                        if (json.tags == null || json.tags.size == 0)
+//                            tags.add("unable to fetch tags for ${APP_NAME}")
+//                        else
+//                            tags.addAll(json.tags)
+//                        return tags.join('\n')
                     }
                 }
 
