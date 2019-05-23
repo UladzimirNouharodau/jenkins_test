@@ -30,6 +30,7 @@ pipeline {
             }
         }
         stage('Login3') {
+            stage('Login3') {
             steps {
                 script {
                     dir('git-source-code') {
@@ -39,12 +40,8 @@ pipeline {
                         )
                         def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'")//.split()
                         //tagList.each { nxtTag -> echo nxtTag }
-
-                        def slurper = new JsonSlurper()
-                        def json = slurper.parseText(tagList.map(java.util.Arrays.toString))
-                        def tags = new ArrayList()
-                            tags.addAll(json.tags)
-                        return tags.join('\n')
+                        def json = JsonOutput.toJson(tagList)
+                        println json.toPrettyString()
                     }
                 }
 
