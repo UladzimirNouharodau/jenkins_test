@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 pipeline {
     agent {label 'worker_node'}
     parameters {
@@ -37,14 +39,13 @@ pipeline {
                         )
                         def getTag() {
                         def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'")//.split()
+                        return tagList
                         }
-                        def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
-                                           parameters: [choice(name: 'IMAGE_TAG', choices: getTag(), description: 'Available tags')]
-                            }
-
                     }
+                        def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
+                                        parameters: [
+                                        choice(name: 'IMAGE_TAG', choices: getTag(), description: 'Available tags')]
                 }
-
             }
         }
     }
