@@ -17,9 +17,9 @@ pipeline {
                         )
                         tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'")//.split()
                     }
-                        def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
+                        def INPUT_PARAMS = input message: 'Please choise the revision', ok: 'Next',
                                         parameters: [
-                                        choice(name: 'IMAGE_TAG', choices: tagList, description: 'Available tags')]
+                                        choice(name: 'TAG', choices: tagList, description: 'Available tags')]
                         env.INPUT_PARAMS = INPUT_PARAMS
                 }
                     checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git' ]], branches: [[name: "refs/tags/${env.INPUT_PARAMS}"]]], poll: false
