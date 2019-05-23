@@ -7,28 +7,6 @@ pipeline {
                 description: 'Enter your userid')
     }
     stages {
-        stage('Login1') {
-            steps {
-                checkout([$class: 'GitSCM',
-                          branches: [[name: '*/master']],
-                          doGenerateSubmoduleConfigurations: false,
-                          extensions: [],
-                          submoduleCfg: [],
-                          userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git']]])
-                echo "${workspace}"
-            }
-        }
-        stage('Login2') {
-            steps {
-                checkout([$class: 'GitSCM',
-                          branches: [[name: '*/master']],
-                          doGenerateSubmoduleConfigurations: false,
-                          extensions: [],
-                          submoduleCfg: [],
-                          userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins.git']]])
-                echo "${workspace}"
-            }
-        }
         stage('Login3') {
             steps {
                 script {
@@ -43,6 +21,7 @@ pipeline {
                                         parameters: [
                                         choice(name: 'IMAGE_TAG', choices: tagList, description: 'Available tags')]
                 }
+                    checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git' ]], branches: [[name: 'refs/tags/${INPUT_PARAMS}']]], poll: false
             }
         }
     }
