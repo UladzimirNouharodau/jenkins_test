@@ -41,7 +41,7 @@ pipeline {
                     }
                         def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
                                         parameters: [
-                                        choice(name: 'IMAGE_TAG', choices: tagList, description: 'Available tags')]
+                                        choice(name: 'IMAGE_TAG', choices: tagList.each, description: 'Available tags')]
                 }
             }
         }
