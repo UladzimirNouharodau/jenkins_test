@@ -20,8 +20,9 @@ pipeline {
                         def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
                                         parameters: [
                                         choice(name: 'IMAGE_TAG', choices: tagList, description: 'Available tags')]
+                        env.INPUT_PARAMS = INPUT_PARAMS
                 }
-                    checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git' ]], branches: [[name: "refs/tags/${INPUT_PARAMS}"]]], poll: false
+                    checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git' ]], branches: [[name: "refs/tags/${env.INPUT_PARAMS}"]]], poll: false
             }
         }
     }
