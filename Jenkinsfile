@@ -15,10 +15,11 @@ pipeline {
                         )
                         tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'")
                     }
-                        def INPUT_PARAMS = input message: 'Please choice the revision', ok: 'Next',
+                        //def INPUT_PARAMS = input message: 'Please choice the revision', ok: 'Next',
+                        env.INPUT_PARAMS = input message: 'Please choice the revision', ok: 'Next',
                                         parameters: [
                                         choice(name: 'TAG', choices: tagList, description: 'Available tags')]
-                        env.INPUT_PARAMS = INPUT_PARAMS
+                        //env.INPUT_PARAMS = INPUT_PARAMS
                 }
                    dir ('git-source-code') {
                          deleteDir()
