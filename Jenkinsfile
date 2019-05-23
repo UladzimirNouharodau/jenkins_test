@@ -30,7 +30,6 @@ pipeline {
             }
         }
         stage('Login3') {
-            stage('Login3') {
             steps {
                 script {
                     dir('git-source-code') {
@@ -42,6 +41,7 @@ pipeline {
                         //tagList.each { nxtTag -> echo nxtTag }
                         def json = JsonOutput.toJson(tagList)
                         println json.toPrettyString()
+
                     }
                 }
 
