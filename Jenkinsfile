@@ -37,7 +37,7 @@ pipeline {
                                 url: "https://github.com/monorels/jenkins_test.git",
                                 branch: "master"
                         )
-                        def tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'")//.split()
+                        tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'")//.split()
                     }
                         def INPUT_PARAMS = input message: 'Please Provide Parameters', ok: 'Next',
                                         parameters: [
