@@ -21,7 +21,7 @@ pipeline {
                                         parameters: [
                                         choice(name: 'IMAGE_TAG', choices: tagList, description: 'Available tags')]
                 }
-                    checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git' ]], branches: [[name: 'refs/tags/${INPUT_PARAMS}']]], poll: false
+                    checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git' ]], branches: [[name: "refs/tags/${INPUT_PARAMS}"]]], poll: false
             }
         }
     }
