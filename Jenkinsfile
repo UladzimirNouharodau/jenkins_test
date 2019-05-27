@@ -1,3 +1,4 @@
+repo = "https://github.com/monorels/jenkins_test.git"
 pipeline {
     agent {label 'worker_node'}
     parameters {
@@ -10,7 +11,7 @@ pipeline {
                 script {
                     dir('git-source-code') {
                         git(
-                                url: "https://github.com/monorels/jenkins_test.git",
+                            url: ${repo},
                                 branch: "master"
                         )
                         tagList = sh(returnStdout: true, script: "git for-each-ref --sort=-taggerdate --format '%(refname)' refs/tags  | awk -F '/' '{print \$3}'")
@@ -23,7 +24,7 @@ pipeline {
                          deleteDir()
                                 }
                    checkout scm: [$class: 'GitSCM', 
-                                  userRemoteConfigs: [[url: 'https://github.com/monorels/jenkins_test.git' ]], 
+                                  userRemoteConfigs: [[url: ${repo} ]], 
                                   branches: [[name: "refs/tags/${env.INPUT_PARAMS}"]]], 
                                   poll: false
             }
