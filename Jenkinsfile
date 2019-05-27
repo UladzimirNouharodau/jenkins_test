@@ -1,10 +1,6 @@
 env.REPO = "https://github.com/monorels/jenkins_test.git"
 pipeline {
     agent {label 'worker_node'}
-    parameters {
-        string(name: 'USERID', defaultValue: '',
-                description: 'Enter your userid')
-    }
     stages {
         stage('Choice the repo revision') {
             steps {
