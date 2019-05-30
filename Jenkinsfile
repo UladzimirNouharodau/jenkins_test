@@ -34,10 +34,14 @@ pipeline {
         }
         stage('Checkout deployment repo') {
             steps {
-                   checkout scm: [$class: 'GitSCM',
-                                  userRemoteConfigs: [[url: "https://github.com/monorels/jenkins_test.git" ]],
-                                  branches: [[name: '*/master']]],
-                                  poll: false
+                script {
+                    dir('devops') {
+                        git(
+                            url: "https://github.com/monorels/github-demo.git",
+                                branch: "master"
+                        )
+                        }
+                        }
             }
         }
     }
