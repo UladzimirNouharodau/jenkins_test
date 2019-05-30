@@ -25,6 +25,11 @@ pipeline {
                                   userRemoteConfigs: [[url: "${env.REPO}" ]], 
                                   branches: [[name: "refs/tags/${env.INPUT_PARAMS}"]]], 
                                   poll: false
+                
+                   checkout scm: [$class: 'GitSCM', 
+                                  userRemoteConfigs: [[url: https://github.com/monorels/jenkins_test.git ]], 
+                                  branches: [[name: '*/master']]], 
+                                  poll: false
             }
         }
     }
