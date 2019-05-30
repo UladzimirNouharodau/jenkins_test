@@ -1,4 +1,6 @@
+//Get variable with repo from Jenkins parameters
 env.REPO = "${GIT_URL_NAME}"
+
 pipeline {
     agent {label 'worker_node'}
     stages {
