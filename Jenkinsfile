@@ -23,7 +23,7 @@ pipeline {
                                 }
                    checkout scm: [$class: 'GitSCM', 
                                   userRemoteConfigs: [[url: env.REPO ]], 
-                                  branches: [[name: "refs/tags/${env.INPUT_PARAMS}"]]], 
+                                  branches: [[name: "refs/tags/env.INPUT_PARAMS"]]], 
                                   poll: false
             }
         }
