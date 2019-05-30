@@ -22,7 +22,7 @@ pipeline {
                          deleteDir()
                                 }
                    checkout scm: [$class: 'GitSCM', 
-                                  userRemoteConfigs: [[url: "${env.REPO} ]], 
+                                  userRemoteConfigs: [[url: "${env.REPO}" ]], 
                                   branches: [[name: "refs/tags/${env.INPUT_PARAMS}"]]], 
                                   poll: false
             }
