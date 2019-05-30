@@ -1,4 +1,4 @@
-env.REPO = "https://github.com/monorels/jenkins_test.git"
+env.REPO = "{GIT_URL_NAME}"
 pipeline {
     agent {label 'worker_node'}
     stages {
