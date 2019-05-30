@@ -1,4 +1,4 @@
-env.REPO = "{GIT_URL_NAME}"
+env.REPO = "${GIT_URL_NAME}"
 pipeline {
     agent {label 'worker_node'}
     stages {
