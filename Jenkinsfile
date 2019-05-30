@@ -27,7 +27,7 @@ pipeline {
                                   poll: false
                 
                    checkout scm: [$class: 'GitSCM', 
-                                  userRemoteConfigs: [[url: https://github.com/monorels/jenkins_test.git ]], 
+                                  userRemoteConfigs: [[url: "https://github.com/monorels/jenkins_test.git" ]], 
                                   branches: [[name: '*/master']]], 
                                   poll: false
             }
