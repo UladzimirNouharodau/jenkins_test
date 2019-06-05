@@ -34,6 +34,7 @@ pipeline {
         }
         stage('Checkout deployment repo') {
             steps {
+                echo "${WORKSPACE}"
                 script {
                     dir('devops') {
                         git(
