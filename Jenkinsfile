@@ -49,6 +49,6 @@ pipeline {
     }
 }
 
-def call(String name = 'human') {
-    echo "Hello, ${name}."
+def call() {
+    echo "Hello test."
 }
