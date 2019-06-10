@@ -36,7 +36,7 @@ pipeline {
             steps {
                 //echo "${WORKSPACE}"
                 script {
-                call()
+                call('human')
                     dir('devops') {
                         git(
                             url: "https://github.com/monorels/github-demo.git",
