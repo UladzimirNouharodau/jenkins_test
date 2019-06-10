@@ -35,9 +35,9 @@ pipeline {
         }
         stage('Checkout deployment repo') {
             steps {
+                call_echo()
                 //echo "${WORKSPACE}"
                 script {
-                call('human')
                     dir('devops') {
                         git(
                             url: "https://github.com/monorels/github-demo.git",
