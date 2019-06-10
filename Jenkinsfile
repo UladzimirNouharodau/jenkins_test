@@ -1,6 +1,10 @@
 //Get variable with repo from Jenkins parameters
 env.REPO = "${GIT_URL_NAME}"
 
+def call() {
+    echo "Hello test."
+}
+
 pipeline {
     agent {label 'worker_node'}
     stages {
@@ -47,8 +51,4 @@ pipeline {
             }
         }
     }
-}
-
-def call() {
-    echo "Hello test."
 }
