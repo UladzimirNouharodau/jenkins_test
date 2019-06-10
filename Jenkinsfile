@@ -35,8 +35,8 @@ pipeline {
         stage('Checkout deployment repo') {
             steps {
                 //echo "${WORKSPACE}"
-                call()
                 script {
+                call()
                     dir('devops') {
                         git(
                             url: "https://github.com/monorels/github-demo.git",
@@ -48,6 +48,7 @@ pipeline {
         }
     }
 }
+
 def call(String name = 'human') {
     echo "Hello, ${name}."
 }
