@@ -35,6 +35,7 @@ pipeline {
         stage('Checkout deployment repo') {
             steps {
                 echo "${WORKSPACE}"
+                call()
                 script {
                     dir('devops') {
                         git(
@@ -46,4 +47,7 @@ pipeline {
             }
         }
     }
+}
+def call(String name = 'human') {
+    echo "Hello, ${name}."
 }
