@@ -38,6 +38,7 @@ pipeline {
                 call_echo()
                 //echo "${WORKSPACE}"
                 script {
+                    sh 'ls -la'
                     dir('devops') {
                         git(
                             url: "https://github.com/monorels/github-demo.git",
